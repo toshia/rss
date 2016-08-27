@@ -1,0 +1,9 @@
+---
+slug: :rss
+depends:
+  mikutter: 3.5.0-develop
+  plugin: [extract]
+version: '1.0'
+author: toshi_a
+name: RSS
+description: feed
