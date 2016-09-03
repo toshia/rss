@@ -2,13 +2,12 @@
 
 module Plugin::RSS
   class Site < Retriever::Model
-    self.keys = [[:name, :string, true],
-                 [:description, :string],
-                 [:link, :string],
-                 [:created, :time],
-                 [:profile_image_url, :string],
-                 [:feed_url, :string]
-                ]
+    field.string :name, required: true
+    field.string :description
+    field.string :link
+    field.time   :created
+    field.string :profile_image_url
+    field.string :feed_url
 
     def idname
       link
@@ -44,13 +43,12 @@ module Plugin::RSS
 
     register :rss, name: "RSS Topic"
 
-    self.keys = [[:guid, :string],
-                 [:link, :string],
-                 [:title, :string, true],
-                 [:description, :string],
-                 [:created, :time],
-                 [:site, Plugin::RSS::Site, true],
-                ]
+    field.string :guid
+    field.string :link
+    field.string :title, required: true
+    field.string :description
+    field.time   :created
+    field.has    :site, Plugin::RSS::Site, required: true
 
     def to_show
       @to_show ||= self[:title].gsub(/&(gt|lt|quot|amp);/){|m| {'gt' => '>', 'lt' => '<', 'quot' => '"', 'amp' => '&'}[$1] }.freeze
