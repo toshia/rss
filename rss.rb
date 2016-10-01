@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'rss'
-require_relative 'retriever'
+require_relative 'model'
 
 Plugin.create(:rss) do
 
